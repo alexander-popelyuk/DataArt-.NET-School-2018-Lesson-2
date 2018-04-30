@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<cl><!--client-->
+<fn>Petr</fn><!--first name-->
+<ln>Petrov</ln><!--last name-->
+<mn>Petrovich</mn><!--middle name-->
+<p>+380808080800</p><!-- phone -->
+<e>petrov@mailinator.com</e><!-- email -->
+<bd>30</bd><!-- birthdate day -->
+<bm>4</bm><!-- birthdate month-->
+<by>1989</by><!-- birthdate year-->
+<hl1>3rd Inhul's'ka St, 27</hl1><!-- home address line 1-->
+<hc>Mykolaiv</hc><!-- home address city-->
+<hs>Mykolaivs'ka oblast</hs><!-- home address state-->
+<hz>54000</hz><!-- home address zip-->
+<wl1>Viis'kovyi Ln, 6</wl1><!-- work address lline 1-->
+<wc>Kherson</wc><!-- work address city-->
+<ws>Khersons'ka oblast</ws><!-- work address state-->
+<wz>73000</wz><!-- work address zip-->
+</cl>
