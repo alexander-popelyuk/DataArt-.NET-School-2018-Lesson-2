@@ -68,4 +68,7 @@
     <Content Include="Output\workaddress_output.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>cmd.exe /c for %25%25f in ($(ProjectDir)\Output\*) do @del %25%25f</PreBuildEvent>
+  </PropertyGroup>
 </Project>

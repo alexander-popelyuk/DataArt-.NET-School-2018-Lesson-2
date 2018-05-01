@@ -12,7 +12,8 @@ namespace Task_1
     class Program
     {
         const string DefaultInputFile = "clientinfo_input.xml";
-        const string DefaultOutputDirectory = "./Output";
+        const long MaxInputSize = 5 * 1024 * 1024;
+        const string DefaultOutputDirectory = ".\\Output";
         const string ClinetInfoFileName = "clientinfo_output";
         const string WorkAddressFileName = "workaddress_output";
         const string HomeAddressFileName = "homeaddress_output";
@@ -50,13 +51,46 @@ namespace Task_1
         {
             OldFormat.Client old_clinet;
             NewFormat.Client new_clinet;
+            var file_info = new FileInfo(input_file);
+            if (!file_info.Exists)
+            {
+                PrintError(string.Format("Input file '{0}' does not exist.", input_file));
+                return;
+            }
+            if (file_info.Length > MaxInputSize)
+            {
+                PrintError(string.Format("Input file size too big (max = {0}).", MaxInputSize));
+                return;
+            }
+            Console.Write("Reading input file '{0}'...", input_file);
             Convert.FromXml<OldFormat.Client>(input_file, out old_clinet);
+            Console.WriteLine("OK!");
+            Console.Write("Converting to new format...");
             new_clinet = old_clinet;
+            Console.WriteLine("OK!");
+            Console.WriteLine("Generating output...");
             if (!Directory.Exists(output_directory)) Directory.CreateDirectory(output_directory);
-            Convert.ToJson(new_clinet, Path.Combine(output_directory, ClinetInfoFileName + ".json"));
-            Convert.ToXml(new_clinet, Path.Combine(output_directory, ClinetInfoFileName + ".xml"));
-            Convert.ToJson(new_clinet.HomeAddress, Path.Combine(output_directory, HomeAddressFileName + ".json"));
-            Convert.ToXml(new_clinet.WorkAddress, Path.Combine(output_directory, WorkAddressFileName + ".xml"));
+
+            string file_name = Path.Combine(output_directory, ClinetInfoFileName + ".json");
+            Console.Write("Writing '{0}'...", file_name);
+            Convert.ToJson(new_clinet, file_name);
+            Console.WriteLine("OK!");
+
+            file_name = Path.Combine(output_directory, ClinetInfoFileName + ".xml");
+            Console.Write("Writing '{0}'...", file_name);
+            Convert.ToXml(new_clinet, file_name);
+            Console.WriteLine("OK!");
+
+            file_name = Path.Combine(output_directory, HomeAddressFileName + ".json");
+            Console.Write("Writing '{0}'...", file_name);
+            Convert.ToJson(new_clinet.HomeAddress, file_name);
+            Console.WriteLine("OK!");
+
+            file_name = Path.Combine(output_directory, WorkAddressFileName + ".xml");
+            Console.Write("Writing '{0}'...", file_name);
+            Convert.ToXml(new_clinet.WorkAddress, file_name);
+            Console.WriteLine("OK!");
+            Console.WriteLine("Successfully completed!");
         }
 
         static void PrintHelp()
@@ -74,11 +108,12 @@ namespace Task_1
             Console.WriteLine("USAGE: Task_1.exe [ input [ output ]]");
             Console.WriteLine();
             Console.WriteLine("input\tInput file in old format (default: {0}).", DefaultInputFile);
-            Console.WriteLine("output\tOutput folder for three files: (default: {0}).", DefaultOutputDirectory);
+            Console.WriteLine("output\tFolder for output files (default: {0}).", DefaultOutputDirectory);
         }
 
         static void PrintError(string text)
         {
+            Console.WriteLine();
             Console.WriteLine("ERROR: {0}", text);
         }
     }
