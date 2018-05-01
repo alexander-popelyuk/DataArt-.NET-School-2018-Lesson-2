@@ -7,7 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task_1", "Task_1\Task_1.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task_2", "Task_2\Task_2.csproj", "{F4F142EC-CF06-4037-9846-E1B2CEBBFA8C}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Converter", "Converter\Converter.shproj", "{7C1E36B0-BFBD-4B1A-912E-EAD5F8D63DA8}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Converter\Converter.projitems*{03f5714a-fae6-4561-9d40-a21bacc6e093}*SharedItemsImports = 4
+		Converter\Converter.projitems*{7c1e36b0-bfbd-4b1a-912e-ead5f8d63da8}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU

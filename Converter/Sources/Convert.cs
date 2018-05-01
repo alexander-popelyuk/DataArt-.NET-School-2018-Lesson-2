@@ -1,11 +1,10 @@
-﻿using System;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 using Newtonsoft.Json;
 using System.IO;
 
-namespace Task_1
+namespace Lesson_2
 {
-    class Convert
+    public class Convert
     {
         public static void ToXml(object obj, string path)
         {

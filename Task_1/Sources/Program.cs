@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
 using System.IO;
 
 
@@ -63,7 +58,7 @@ namespace Task_1
                 return;
             }
             Console.Write("Reading input file '{0}'...", input_file);
-            Convert.FromXml<OldFormat.Client>(input_file, out old_clinet);
+            Lesson_2.Convert.FromXml<OldFormat.Client>(input_file, out old_clinet);
             Console.WriteLine("OK!");
             Console.Write("Converting to new format...");
             new_clinet = old_clinet;
@@ -73,22 +68,22 @@ namespace Task_1
 
             string file_name = Path.Combine(output_directory, ClinetInfoFileName + ".json");
             Console.Write("Writing '{0}'...", file_name);
-            Convert.ToJson(new_clinet, file_name);
+            Lesson_2.Convert.ToJson(new_clinet, file_name);
             Console.WriteLine("OK!");
 
             file_name = Path.Combine(output_directory, ClinetInfoFileName + ".xml");
             Console.Write("Writing '{0}'...", file_name);
-            Convert.ToXml(new_clinet, file_name);
+            Lesson_2.Convert.ToXml(new_clinet, file_name);
             Console.WriteLine("OK!");
 
             file_name = Path.Combine(output_directory, HomeAddressFileName + ".json");
             Console.Write("Writing '{0}'...", file_name);
-            Convert.ToJson(new_clinet.HomeAddress, file_name);
+            Lesson_2.Convert.ToJson(new_clinet.HomeAddress, file_name);
             Console.WriteLine("OK!");
 
             file_name = Path.Combine(output_directory, WorkAddressFileName + ".xml");
             Console.Write("Writing '{0}'...", file_name);
-            Convert.ToXml(new_clinet.WorkAddress, file_name);
+            Lesson_2.Convert.ToXml(new_clinet.WorkAddress, file_name);
             Console.WriteLine("OK!");
             Console.WriteLine("Successfully completed!");
         }

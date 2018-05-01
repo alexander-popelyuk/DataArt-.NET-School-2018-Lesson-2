@@ -51,7 +51,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sources\Client.cs" />
     <Compile Include="Sources\Program.cs" />
-    <Compile Include="Sources\Convert.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -67,6 +66,7 @@
     <Content Include="Output\clientinfo_output.xml" />
     <Content Include="Output\workaddress_output.xml" />
   </ItemGroup>
+  <Import Project="..\Converter\Converter.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>cmd.exe /c for %25%25f in ($(ProjectDir)\Output\*) do @del %25%25f</PreBuildEvent>
