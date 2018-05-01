@@ -48,10 +48,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sources\BaseClient.cs" />
-    <Compile Include="Sources\NewClient.cs" />
-    <Compile Include="Sources\OldClient.cs" />
+    <Compile Include="Sources\Client.cs" />
     <Compile Include="Sources\Program.cs" />
+    <Compile Include="Sources\Convert.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
