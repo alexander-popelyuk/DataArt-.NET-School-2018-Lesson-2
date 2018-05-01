@@ -31,7 +31,7 @@ namespace Task_1
         {
             using (var stream = new StreamWriter(path))
             {
-                JsonConvert.SerializeObject(obj);
+                stream.Write(JsonConvert.SerializeObject(obj, Formatting.Indented));
             }
         }
 

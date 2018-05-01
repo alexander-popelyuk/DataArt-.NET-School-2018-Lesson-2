@@ -1,0 +1,22 @@
+{
+  "FirstName": "Petr",
+  "LastName": "Petrov",
+  "MiddleName": "Petrovich",
+  "BirthDate": "1989-04-30T00:00:00",
+  "PhoneNumber": "+380808080800",
+  "Email": "petrov@mailinator.com",
+  "HomeAddress": {
+    "HouseNumber": "27",
+    "StreetName": "3rd Inhul's'ka St",
+    "CityName": "Mykolaiv",
+    "StateName": "Mykolaivs'ka oblast",
+    "ZipCode": "54000"
+  },
+  "WorkAddress": {
+    "HouseNumber": "6",
+    "StreetName": "Viis'kovyi Ln",
+    "CityName": "Kherson",
+    "StateName": "Khersons'ka oblast",
+    "ZipCode": "73000"
+  }
+}

@@ -36,6 +36,7 @@
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
@@ -54,11 +55,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Output\clientinfo_output.json" />
+    <None Include="Output\homeaddress_output.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Samples\clientinfo_input.xml" />
+    <Content Include="Input\clientinfo_input.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Output\clientinfo_output.xml" />
+    <Content Include="Output\workaddress_output.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
