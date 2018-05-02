@@ -21,5 +21,11 @@ namespace Task_2
         public Type OperationType;
         public Decimal Amount;
         public DateTime Date;
+
+        public override string ToString()
+        {
+            return string.Format("Type: {0}, Amount: {1}, Date: {2}",
+                Enum.GetName(typeof(Operation.Type), OperationType), Amount, Date);
+        }
     }
 }

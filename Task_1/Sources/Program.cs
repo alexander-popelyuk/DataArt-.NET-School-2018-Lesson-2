@@ -58,11 +58,13 @@ namespace Task_1
                 return;
             }
             Console.Write("Reading input file '{0}'...", input_file);
-            Lesson_2.Convert.FromXml<OldFormat.Client>(input_file, out old_clinet);
+            old_clinet = Lesson_2.Convert.FromXml<OldFormat.Client>(input_file);
             Console.WriteLine("OK!");
+
             Console.Write("Converting to new format...");
             new_clinet = old_clinet;
             Console.WriteLine("OK!");
+
             Console.WriteLine("Generating output...");
             if (!Directory.Exists(output_directory)) Directory.CreateDirectory(output_directory);
 

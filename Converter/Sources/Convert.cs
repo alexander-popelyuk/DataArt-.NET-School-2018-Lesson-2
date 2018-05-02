@@ -16,13 +16,13 @@ namespace Lesson_2
             }
         }
 
-        public static void FromXml<T>(string path, out T obj)
+        public static T FromXml<T>(string path)
         {
             var serializer = new XmlSerializer(typeof(T));
 
             using (var stream = new StreamReader(path))
             {
-                obj = (T)serializer.Deserialize(stream);
+                return (T)serializer.Deserialize(stream);
             }
         }
 
@@ -34,11 +34,11 @@ namespace Lesson_2
             }
         }
 
-        public static void FromJson<T>(string path, out T obj)
+        public static T FromJson<T>(string path)
         {
             using (var stream = new StreamReader(path))
             {
-                obj = JsonConvert.DeserializeObject<T>(stream.ReadToEnd());
+                return JsonConvert.DeserializeObject<T>(stream.ReadToEnd());
             }
         }
     }
