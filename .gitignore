@@ -1,12 +1,10 @@
 /.vs
 /Converter/*.user
-/Task_1/*.user
 /Task_1/bin/Debug/*.config
 /Task_1/bin/Debug/*.pdb
 /Task_1/bin/Release/*.config
 /Task_1/bin/Release/*.pdb
 /Task_1/obj
-/Task_2/*.user
 /Task_2/bin/Debug/*.config
 /Task_2/bin/Debug/*.pdb
 /Task_2/bin/Release/*.config
