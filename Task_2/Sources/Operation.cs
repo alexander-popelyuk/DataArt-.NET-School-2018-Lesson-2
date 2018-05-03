@@ -6,7 +6,8 @@ using Newtonsoft.Json.Converters;
 
 namespace Task_2
 {
-    class Operation
+    [XmlRoot("operation")]
+    public class Operation
     {
         public enum Type
         {
@@ -24,8 +25,8 @@ namespace Task_2
 
         public override string ToString()
         {
-            return string.Format("Type: {0}, Amount: {1}, Date: {2}",
-                Enum.GetName(typeof(Operation.Type), OperationType), Amount, Date);
+            return string.Format("Date: {0}, Type: {1}, Amount: {2}",
+                Date, Enum.GetName(typeof(Operation.Type), OperationType), Amount);
         }
     }
 }

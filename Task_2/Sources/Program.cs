@@ -15,8 +15,8 @@ namespace Task_2
         {
             try
             {
-                string SamplesDirectory = DefaultSamplesDirectory;
-
+                string samples_directory = DefaultSamplesDirectory;
+                
                 if (args.Length > 1)
                 {
                     PrintError("Too many arguments.");
@@ -25,8 +25,8 @@ namespace Task_2
                 else if (args.Length == 1 && args[0] == "/?") PrintHelp();
                 else
                 {
-                    if (args.Length > 0) SamplesDirectory = args[0];
-                    ProcessData(SamplesDirectory);
+                    if (args.Length > 0) samples_directory = args[0];
+                    ProcessData(samples_directory);
                 }
             }
             catch (Exception ex)
@@ -40,58 +40,59 @@ namespace Task_2
 
         static void ProcessData(string samples_directory)
         {
-            //Console.WriteLine("processing data... ok");
             if (!Directory.Exists(samples_directory))
             {
                 PrintError(string.Format("Directory '{0}' does not exist.", samples_directory));
                 return;
             }
-            var sample_files = new DirectoryInfo(samples_directory).GetFiles();
+            Console.WriteLine("Looking up in '{0}'...", samples_directory);
+            var sample_files = Directory.GetFiles(samples_directory);
             var operations = new List<Operation>();
-            foreach (var file in sample_files)
+            int failed_count = 0;
+            foreach (var file_path in sample_files)
             {
-                if (file.Extension.ToLower() == ".xml")
+                var file_extension = Path.GetExtension(file_path).ToLower();
+
+                if (file_extension == ".xml")
                 {
-                    if (ProcessFile(file.FullName, operations, Lesson_2.Convert.FromXml<Operation>))
-                        Console.WriteLine("{0} ok", file.Name);
-                    else
-                        Console.WriteLine("{0} fail", file.Name);
+                    if (!ProcessFile(file_path, operations, Lesson_2.Convert.FromXml<Operation>)) failed_count++;
                 }
-                if (file.Extension.ToLower() == "json")
+                if (file_extension == ".json")
                 {
-                    if (ProcessFile(file.FullName, operations, Lesson_2.Convert.FromJson<Operation>))
-                        Console.WriteLine("{0} ok", file.Name);
-                    else
-                        Console.WriteLine("{0} fail", file.Name);
+                    if (!ProcessFile(file_path, operations, Lesson_2.Convert.FromJson<Operation>)) failed_count++;
                 }
             }
-            // check we found at leas one file
+            Console.WriteLine("{0} files processed, {1} success, {2} failed", operations.Count + failed_count, operations.Count, failed_count);
+            // check we done at least one successfull conversion
             if (operations.Count > 0)
             {
+                Console.WriteLine("Max operation parameters:");
                 Console.WriteLine(operations.Aggregate((max, next) => next.Amount > max.Amount ? next : max));
             }
             else
             {
-                Console.WriteLine("nothing here!");
+                Console.WriteLine("Valid file not found!");
             }
         }
 
         static bool ProcessFile(string path, List<Operation> operations, Func<string, Operation> deserialize)
         {
-            var file_info = new FileInfo(path);
-            if (file_info.Length > MaxInputSize)
+            Console.Write("Processing '{0}'...", path);
+
+            if (new FileInfo(path).Length > MaxInputSize)
             {
-                PrintError(string.Format("Input file size too big (max = {0}).", MaxInputSize));
+                Console.WriteLine("SKIP! (File size too big, max = {0}!).", MaxInputSize);
                 return false;
             }
             try
             {
                 operations.Add(deserialize(path));
+                Console.WriteLine("OK!");
                 return true;
             }
             catch (Exception ex)
             {
-                PrintError(ex.Message); // sure ? maybe just 'failed!' toka
+                Console.WriteLine("FAIL! ({0}", ex.Message);
                 return false;
             }
         }
