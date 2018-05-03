@@ -3,7 +3,11 @@
   <FirstName>Petr</FirstName>
   <LastName>Petrov</LastName>
   <MiddleName>Petrovich</MiddleName>
-  <BirthDate>1989-04-30T00:00:00</BirthDate>
+  <BirthDate>
+    <Day>30</Day>
+    <Month>4</Month>
+    <Year>1989</Year>
+  </BirthDate>
   <PhoneNumber>+380808080800</PhoneNumber>
   <Email>petrov@mailinator.com</Email>
   <HomeAddress>

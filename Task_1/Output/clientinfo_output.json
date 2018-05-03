@@ -2,7 +2,11 @@
   "FirstName": "Petr",
   "LastName": "Petrov",
   "MiddleName": "Petrovich",
-  "BirthDate": "1989-04-30T00:00:00",
+  "BirthDate": {
+    "Day": 30,
+    "Month": 4,
+    "Year": 1989
+  },
   "PhoneNumber": "+380808080800",
   "Email": "petrov@mailinator.com",
   "HomeAddress": {

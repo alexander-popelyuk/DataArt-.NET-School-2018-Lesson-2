@@ -48,7 +48,7 @@ namespace Task_1.OldFormat
         [XmlElement("bm")]
         public byte BirthMonth;
         [XmlElement("by")]
-        public uint BirthYear;
+        public ushort BirthYear;
         [XmlElement("hl1")]
         public string HomeAddressLine1;
         [XmlElement("hc")]
@@ -102,13 +102,37 @@ namespace Task_1.NewFormat
     }
     //
     // Summary:
+    //   New format client birth date.
+    public class Date
+    {
+        public byte Day;
+        public byte Month;
+        public ushort Year;
+        //
+        // Summary:
+        //   Default constructor, required by serialization/deserialization routines.
+        public Date()
+        {
+        }
+        //
+        // Summary:
+        //   Non default constructor, used to convert date from old client.
+        public Date(byte day, byte month, ushort year)
+        {
+            this.Day = day;
+            this.Month = month;
+            this.Year = year;
+        }
+    }
+    //
+    // Summary:
     //   New format client representation.
     public class Client
     {
         public string FirstName;
         public string LastName;
         public string MiddleName;
-        public DateTime BirthDate;
+        public Date BirthDate;
         public string PhoneNumber;
         public string Email;
         public Address HomeAddress;
@@ -127,7 +151,7 @@ namespace Task_1.NewFormat
             this.FirstName = client.FirstName;
             this.LastName = client.LastName;
             this.MiddleName = client.MiddleName;
-            this.BirthDate = new DateTime((int)client.BirthYear, client.BirthMonth, client.BirthDay);
+            this.BirthDate = new Date(client.BirthDay, client.BirthMonth, client.BirthYear);
             this.PhoneNumber = client.PhoneNumber;
             this.Email = client.Email;
             this.HomeAddress = new Address(client.HomeAddressLine1, client.HomeAddressCity,
