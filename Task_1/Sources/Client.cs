@@ -1,8 +1,35 @@
-﻿using System;
+﻿// MIT License
+// 
+// Copyright(c) 2018 Alexander Popelyuk
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
+
+using System;
 using System.Xml.Serialization;
+
 
 namespace Task_1.OldFormat
 {
+    //
+    // Summary:
+    //   Old format client representation.
     [XmlRoot("cl")]
     public class Client
     {
@@ -43,6 +70,9 @@ namespace Task_1.OldFormat
 
 namespace Task_1.NewFormat
 {
+    //
+    // Summary:
+    //   New format client address.
     public class Address
     {
         public string HouseNumber;
@@ -50,11 +80,15 @@ namespace Task_1.NewFormat
         public string CityName;
         public string StateName;
         public string ZipCode;
-
+        //
+        // Summary:
+        //   Default constructor, required by serialization/deserialization routines.
         public Address()
         {
         }
-
+        //
+        // Summary:
+        //   Non default constructor, used to convert address from old client.
         public Address(string line1, string city, string state, string zip)
         {
             var line1_fields = line1.Split(',');
@@ -66,7 +100,9 @@ namespace Task_1.NewFormat
             this.ZipCode = zip;
         }
     }
-
+    //
+    // Summary:
+    //   New format client representation.
     public class Client
     {
         public string FirstName;
@@ -77,11 +113,15 @@ namespace Task_1.NewFormat
         public string Email;
         public Address HomeAddress;
         public Address WorkAddress;
-
+        //
+        // Summary:
+        //   Default constructor, required by serialization/deserialization routines.
         public Client()
         {
         }
-
+        //
+        // Summary:
+        //   Non default constructor, used to convert from old client format.
         public Client(OldFormat.Client client)
         {
             this.FirstName = client.FirstName;
@@ -95,7 +135,9 @@ namespace Task_1.NewFormat
             this.WorkAddress = new Address(client.WorkAddressLine1, client.WorkAddressCity,
                 client.WorkAddressState, client.WorkAddressZip);
         }
-
+        //
+        // Summary:
+        //   Implicit assignment, used to convert from old client format.
         public static implicit operator Client(OldFormat.Client client)
         {
             return new Client(client);

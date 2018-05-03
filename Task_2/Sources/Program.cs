@@ -1,4 +1,27 @@
-﻿using System;
+﻿// MIT License
+// 
+// Copyright(c) 2018 Alexander Popelyuk
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
@@ -6,11 +29,19 @@ using System.IO;
 
 namespace Task_2
 {
+    //
+    // Summary:
+    //   Main class containing entry point to the program.
     class Program
     {
+        // Limit input deserialization file size.
         const long MaxInputSize = 5 * 1024 * 1024;
+        // Default command line parameters.
         const string DefaultSamplesDirectory = ".\\operations";
-
+        //
+        // Summary:
+        //   Entry point to the program.
+        //   Process command line arguments and run application routine.
         static void Main(string[] args)
         {
             try
@@ -37,7 +68,13 @@ namespace Task_2
                 Console.ReadKey(true);
             #endif
         }
-
+        //
+        // Summary:
+        //   Process files in specified directory and prints resulting statistics.
+        //
+        // Parameters:
+        //   samples_directory:
+        //     Directory containing sample files to process.
         static void ProcessData(string samples_directory)
         {
             if (!Directory.Exists(samples_directory))
@@ -71,10 +108,25 @@ namespace Task_2
             }
             else
             {
-                Console.WriteLine("Valid file not found!");
+                Console.WriteLine("No valid files found!");
             }
         }
-
+        //
+        // Summary:
+        //   Deserialize file to 'Operation' object using provided deserializer.
+        //
+        // Parameters:
+        //   path:
+        //     Path to file to deserialize.
+        //
+        //   operations:
+        //     Operation list object to put converted operation.
+        //
+        //   deserialize:
+        //     Deserialization delegate.
+        //
+        // Return:
+        //     true if operation was successful; false otherwise.
         static bool ProcessFile(string path, List<Operation> operations, Func<string, Operation> deserialize)
         {
             Console.Write("Processing '{0}'...", path);
@@ -96,14 +148,18 @@ namespace Task_2
                 return false;
             }
         }
-
+        //
+        // Summary:
+        //   Print program help text to standard output stream.
         static void PrintHelp()
         {
             Console.WriteLine();
             Console.WriteLine("Process operations data and print statistics.");
             PrintUsage();
         }
-
+        //
+        // Summary:
+        //   Print program usage text to standard output stream.
         static void PrintUsage()
         {
             Console.WriteLine();
@@ -111,11 +167,17 @@ namespace Task_2
             Console.WriteLine();
             Console.WriteLine("input\tInput folder with samples to process (default: {0}).", DefaultSamplesDirectory);
         }
-
+        //
+        // Summary:
+        //   Print error message to standard error stream.
+        //
+        // Parameters:
+        //   text:
+        //     Error text to print.
         static void PrintError(string text)
         {
-            Console.WriteLine();
-            Console.WriteLine("ERROR: {0}", text);
+            Console.Error.WriteLine();
+            Console.Error.WriteLine("ERROR: {0}", text);
         }
     }
 }
